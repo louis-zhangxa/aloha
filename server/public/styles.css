@@ -1,0 +1,135 @@
+body {
+  background-image: url("./images/mobile.jpg");
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.navbar {
+  background-color: #d1e7dd;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.navbar button {
+  border: 0 solid;
+  background-color: transparent;
+  font-size: large;
+  color: black;
+}
+
+.modal-icon {
+  padding: 1rem;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.modal-button {
+  width: 100%;
+  border: 0 solid;
+  padding: 1.5rem 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.modal-self {
+  background-color: #d1e7dd;
+}
+
+.modal-hid {
+  background-color: rgb(50 50 50 / 75%);
+}
+
+.home-page {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.home-page label {
+  font-size: x-large;
+  margin-bottom: 4rem;
+}
+
+.home-page input {
+  border: 1px solid #ced4da;
+  border-radius: 0.3rem;
+  padding: 1rem 5rem 1rem 0.5rem;
+  margin: 0 1rem 4rem;
+}
+
+.home-page button {
+  border: 0 transparent;
+  border-radius: 0.3rem;
+  background-color: #6d747d;
+  color: white;
+  padding: 1rem;
+}
+
+@media only screen and (min-width: 550px) {
+  body {
+    background-image: url("./images/desktop.jpg");
+  }
+
+  .navbar {
+    background-color: #343a40;
+  }
+
+  .navbar button {
+    padding: 1rem;
+    font-size: x-large;
+    color: white;
+    cursor: pointer;
+  }
+
+  .modal-icon {
+    color: white;
+  }
+
+  .modal {
+    flex-direction: row;
+  }
+
+  .modal-self {
+    background-color: white;
+  }
+
+  .modal-hid {
+    background-color: rgb(50 50 50 / 75%);
+  }
+
+  .modal-button {
+    font-size: x-large;
+    cursor: pointer;
+  }
+
+  .home-page label {
+    color: #e1f3f2;
+    font-size: xx-large;
+    margin: 3rem 0;
+  }
+
+  .home-page input {
+    padding: 1rem 15rem 1rem 0.5rem;
+    margin: 0 1rem 6rem;
+  }
+
+  .home-page button {
+    font-size: large;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+  }
+}

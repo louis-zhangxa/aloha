@@ -1,10 +1,12 @@
 import React from 'react';
-import HelloWorld from '../components/hello-world';
+import Navbar from '../components/navbar';
+import HomePage from '../components/home-page';
 
 export default function Home(props) {
   return (
     <div>
-      <HelloWorld />
+      <Navbar/>
+      <HomePage/>
     </div>
   );
 }
