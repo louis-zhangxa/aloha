@@ -12,7 +12,8 @@ body {
   align-items: center;
 }
 
-.navbar button {
+.navbar a {
+  text-decoration: none;
   border: 0 solid;
   background-color: transparent;
   font-size: large;
@@ -70,12 +71,40 @@ body {
   margin: 0 1rem 4rem;
 }
 
-.home-page button {
+.home-page a {
+  text-decoration: none;
   border: 0 transparent;
   border-radius: 0.3rem;
   background-color: #6d747d;
   color: white;
   padding: 1rem;
+}
+
+.not-found-page {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.not-found-page img {
+  width: 300px;
+  height: 300px;
+}
+
+.not-found-page h2 {
+  margin: 2rem;
+  color: gray;
+  font-size: large;
+}
+
+.not-found-page a {
+  color: white;
+  text-decoration: none;
+  padding: 0.8rem;
+  border-radius: 0.3rem;
+  background-color: #6d747d;
 }
 
 @media only screen and (min-width: 550px) {
@@ -87,7 +116,7 @@ body {
     background-color: #343a40;
   }
 
-  .navbar button {
+  .navbar a {
     padding: 1rem;
     font-size: x-large;
     color: white;
@@ -95,6 +124,7 @@ body {
   }
 
   .modal-icon {
+    cursor: pointer;
     color: white;
   }
 
@@ -126,10 +156,20 @@ body {
     margin: 0 1rem 6rem;
   }
 
-  .home-page button {
+  .home-page a {
     font-size: large;
     padding: 1rem;
     margin-bottom: 1rem;
     cursor: pointer;
+  }
+
+  .not-found-page img {
+    width: 600px;
+    height: 600px;
+  }
+
+  .not-found-page h2 {
+    color: white;
+    font-size: x-large;
   }
 }

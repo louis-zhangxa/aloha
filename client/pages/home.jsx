@@ -1,12 +1,36 @@
 import React from 'react';
-import Navbar from '../components/navbar';
-import HomePage from '../components/home-page';
 
-export default function Home(props) {
-  return (
-    <div>
-      <Navbar/>
-      <HomePage/>
-    </div>
-  );
+export default class HomePage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { destination: '' };
+
+    this.handleDestinationChange = this.handleDestinationChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleDestinationChange(event) {
+    this.setState({ destination: event.target.value });
+  }
+
+  handleSubmit(event) {
+    alert(this.state.destination);
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      <div className='container'>
+        <div className='row'>
+          <div className='col-full'>
+            <form className='home-page'>
+              <label htmlFor="destination">WHERE TO GO?</label>
+              <input type="text" name='destination' placeholder='Enter Your Destination!' value={this.state.destination} onChange={this.handleDestinationChange} />
+              <a href={`#attractions?destination=${this.state.destination}`}>Lets Go!</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }

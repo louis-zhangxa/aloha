@@ -23,7 +23,7 @@ export default class Navbar extends React.Component {
       <div>
         <div className='navbar'>
           <div className='column-third'><i className={this.state.iconClass} onClick={this.modal} /></div>
-          <div className='column-third logo'><button>Aloha🍍</button></div>
+          <div className='column-third logo'><a href="#">Aloha🍍</a></div>
           <div className='column-third' />
         </div>
         <div className={this.state.modalClass}>
