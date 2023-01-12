@@ -6,7 +6,7 @@ export default function AttractionCard(props) {
     <Card location={location} key={location.place_id} />
   ));
   return (
-    <ul className='row'>
+    <ul className='row attraction-card-list'>
       {listItems}
     </ul>
   );

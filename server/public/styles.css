@@ -84,7 +84,6 @@ body {
 }
 
 .not-found-page {
-  height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -92,22 +91,30 @@ body {
 }
 
 .not-found-page img {
-  width: 300px;
-  height: 300px;
+  padding: 1rem;
+  width: 250px;
+  height: 250px;
 }
 
 .not-found-page h2 {
-  margin: 2rem;
-  color: gray;
+  margin: 1rem 2rem;
+  color: black;
+  text-align: center;
   font-size: large;
 }
 
 .not-found-page a {
   color: white;
   text-decoration: none;
+  margin-top: 1rem;
   padding: 0.8rem;
   border-radius: 0.3rem;
   background-color: #6d747d;
+}
+
+.attraction-card-list {
+  padding: 1rem;
+  justify-content: center;
 }
 
 .attraction-card {
@@ -119,8 +126,7 @@ body {
   flex-direction: column;
   align-items: center;
   background-color: rgba(255, 255, 255, 0.719);
-  padding: 2rem;
-  padding-top: 1rem;
+  padding: 1rem 2rem;
   border-radius: 0.5rem;
 }
 
@@ -130,8 +136,8 @@ body {
 }
 
 .attraction-info-box img {
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
   object-fit: cover;
 }
 
@@ -159,7 +165,7 @@ body {
 
 .left-info,
 .right-info {
-  padding: 2rem;
+  padding: 1rem 2rem;
 }
 
 .left-info li {
@@ -175,7 +181,23 @@ body {
   line-height: 1.5rem;
 }
 
-@media only screen and (min-width: 550px) {
+@media only screen and (min-width: 400px) {
+  .attraction-info-box img {
+    width: 300px;
+    height: 300px;
+  }
+
+  .not-found-page img {
+    width: 300px;
+    height: 300px;
+  }
+
+  .not-found-page h2 {
+    margin: 1.2rem;
+  }
+}
+
+@media only screen and (min-width: 570px) {
   body {
     background-image: url("./images/desktop.jpg");
   }
@@ -240,11 +262,12 @@ body {
   }
 
   .not-found-page img {
-    width: 600px;
-    height: 600px;
+    width: 400px;
+    height: 400px;
   }
 
   .not-found-page h2 {
+    margin: 2rem;
     color: white;
     font-size: x-large;
   }
@@ -266,5 +289,10 @@ body {
 
   .attraction-photo img {
     width: 400px;
+  }
+
+  .left-info,
+  .right-info {
+    padding: 2rem;
   }
 }
