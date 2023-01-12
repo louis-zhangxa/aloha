@@ -14,7 +14,7 @@ export default class HomePage extends React.Component {
   }
 
   handleSubmit(event) {
-    alert(this.state.destination);
+    window.location.hash = `#attractions?destination=${this.state.destination}`;
     event.preventDefault();
   }
 
@@ -23,10 +23,10 @@ export default class HomePage extends React.Component {
       <div className='container'>
         <div className='row'>
           <div className='col-full'>
-            <form className='home-page'>
+            <form className='home-page' onSubmit={this.handleSubmit}>
               <label htmlFor="destination">WHERE TO GO?</label>
-              <input type="text" name='destination' placeholder='Enter Your Destination!' value={this.state.destination} onChange={this.handleDestinationChange} />
-              <a href={`#attractions?destination=${this.state.destination}`}>Lets Go!</a>
+              <input type="text" name='destination' placeholder='Enter Your Destination!' value={this.state.destination} onChange={this.handleDestinationChange} required />
+              <button type='submit'>Lets Go!</button>
             </form>
           </div>
         </div>

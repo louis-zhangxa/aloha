@@ -22,16 +22,16 @@ export default class Navbar extends React.Component {
     return (
       <div>
         <div className='navbar'>
-          <div className='column-third'><i className={this.state.iconClass} onClick={this.modal} /></div>
-          <div className='column-third logo'><a href="#">Aloha🍍</a></div>
-          <div className='column-third' />
+          <div className='col-33'><i className={this.state.iconClass} onClick={this.modal} /></div>
+          <div className='col-33 logo'><a href="#" className='aloha'>Aloha🍍</a></div>
+          <div className='col-33' />
         </div>
         <div className={this.state.modalClass}>
           <div className="col-30 modal-self">
-            <button className='modal-button'>Log In</button>
-            <button className='modal-button'>My favorite</button>
-            <button className='modal-button'>Sign Out</button>
-            <button className='modal-button'>Connect us!</button>
+            <a onClick={this.modal} href="" className='modal-link'>Log In</a>
+            <a onClick={this.modal} href="" className='modal-link'>My favorite</a>
+            <a onClick={this.modal} href="" className='modal-link'>Sign Out</a>
+            <a onClick={this.modal} href="#connect" className='modal-link'>Connect us!</a>
           </div>
           <div className="col-70 modal-hid" onClick={this.modal} />
         </div>

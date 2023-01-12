@@ -35,16 +35,20 @@ body {
   height: 100vh;
 }
 
-.modal-button {
+.modal-self {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: #d1e7dd;
+}
+
+.modal-link {
+  text-decoration: none;
   width: 100%;
   border: 0 solid;
   padding: 1.5rem 0;
+  color: black;
   background-color: transparent;
-  cursor: pointer;
-}
-
-.modal-self {
-  background-color: #d1e7dd;
 }
 
 .modal-hid {
@@ -71,8 +75,7 @@ body {
   margin: 0 1rem 4rem;
 }
 
-.home-page a {
-  text-decoration: none;
+.home-page button {
   border: 0 transparent;
   border-radius: 0.3rem;
   background-color: #6d747d;
@@ -107,9 +110,78 @@ body {
   background-color: #6d747d;
 }
 
+.attraction-card {
+  padding: 1rem;
+}
+
+.attraction-info-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.719);
+  padding: 2rem;
+  padding-top: 1rem;
+  border-radius: 0.5rem;
+}
+
+.attraction-info-box:hover {
+  transform: scale(1.08);
+  transition: 1s;
+}
+
+.attraction-info-box img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.attraction-info-box h3,
+.attraction-info-box h4,
+.attraction-info-box h5 {
+  text-align: center;
+  margin: 0.5rem;
+}
+
+.attraction-photo {
+  justify-content: center;
+}
+
+.attraction-photo img {
+  width: 300px;
+  object-fit: cover;
+  padding: 1rem;
+}
+
+.attraction-info h1 {
+  width: 100%;
+  text-align: center;
+}
+
+.left-info,
+.right-info {
+  padding: 2rem;
+}
+
+.left-info li {
+  padding: 0.5rem 0;
+}
+
+.left-info a {
+  text-decoration: none;
+  color: aqua;
+}
+
+.right-info p {
+  line-height: 1.5rem;
+}
+
 @media only screen and (min-width: 550px) {
   body {
     background-image: url("./images/desktop.jpg");
+  }
+
+  .overlay {
+    background-image: url("./images/desktop-overlay.svg") !important;
   }
 
   .navbar {
@@ -121,6 +193,10 @@ body {
     font-size: x-large;
     color: white;
     cursor: pointer;
+  }
+
+  .aloha:hover {
+    color: aqua;
   }
 
   .modal-icon {
@@ -140,7 +216,7 @@ body {
     background-color: rgb(50 50 50 / 75%);
   }
 
-  .modal-button {
+  .modal-link {
     font-size: x-large;
     cursor: pointer;
   }
@@ -156,7 +232,7 @@ body {
     margin: 0 1rem 6rem;
   }
 
-  .home-page a {
+  .home-page button {
     font-size: large;
     padding: 1rem;
     margin-bottom: 1rem;
@@ -171,5 +247,24 @@ body {
   .not-found-page h2 {
     color: white;
     font-size: x-large;
+  }
+
+  .attraction-info-box {
+    cursor: pointer;
+  }
+
+  .attraction-info-box img {
+    width: 400px;
+    height: 400px;
+  }
+
+  .attraction-info-box h3,
+  .attraction-info-box h4,
+  .attraction-info-box h5 {
+    margin: 0.8rem;
+  }
+
+  .attraction-photo img {
+    width: 400px;
   }
 }
