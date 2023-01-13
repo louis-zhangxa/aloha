@@ -1,4 +1,5 @@
 import React from 'react';
+import AppContext from '../lib/app-context';
 
 export default class AttractionDetailPage extends React.Component {
   constructor(props) {
@@ -7,6 +8,8 @@ export default class AttractionDetailPage extends React.Component {
     this.photos = this.photos.bind(this);
     this.openingHours = this.openingHours.bind(this);
     this.website = this.website.bind(this);
+    this.userFunction = this.userFunction.bind(this);
+    this.saveAttraction = this.saveAttraction.bind(this);
   }
 
   componentDidMount() {
@@ -68,6 +71,41 @@ export default class AttractionDetailPage extends React.Component {
     }
   }
 
+  userFunction() {
+    if (this.context.user) {
+      return (
+        <div className='user-function'>
+          <button onClick={this.saveAttraction}><i className="fa-solid fa-heart" /></button>
+          <button><i className="fa-solid fa-pen-nib" /></button>
+        </div>
+      );
+    }
+  }
+
+  saveAttraction() {
+    const info = { placeId: this.props.attraction, userId: this.context.user.userId };
+    const req = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-access-token': window.localStorage.getItem('react-context-jwt')
+      },
+      body: JSON.stringify(info)
+    };
+    fetch('/api/fav/upload', req)
+      .then(res => res.json())
+      .then(result => {
+        // console.log(result);
+        // if (result.token === undefined) {
+        //   this.setState({ account: '', password: '', message: result.error });
+        // } else if (result.user && result.token) {
+        //   this.props.onSignIn(result);
+        //   window.location.hash = '#';
+        // }
+      })
+      .catch(err => console.error(err));
+  }
+
   render() {
     if (this.state.photo3 !== '') {
       const attraction = this.state.attraction;
@@ -76,6 +114,7 @@ export default class AttractionDetailPage extends React.Component {
           {this.photos()}
           <div className='row attraction-info'>
             <h1>{attraction.name}</h1>
+            {this.userFunction()}
             <div className='column-half left-info'>
               <h3>Address:</h3>
               <p>{attraction.formatted_address}</p>
@@ -94,3 +133,5 @@ export default class AttractionDetailPage extends React.Component {
     }
   }
 }
+
+AttractionDetailPage.contextType = AppContext;

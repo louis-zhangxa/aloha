@@ -113,6 +113,24 @@ app.get('/api/hello', (req, res) => {
   res.json({ hello: 'world' });
 });
 
+app.post('/api/fav/upload', (req, res, next) => {
+  const { placeId, userId } = req.body;
+  if (!placeId || !userId) {
+    throw new ClientError(400, 'info error');
+  }
+  const sql = `
+  insert into "favoriteList" ("userId", "placeId")
+  values ($1, $2)
+  returning "favoriteId", "placeId"
+  `;
+  const params = [userId, placeId];
+  db.query(sql, params)
+    .then(result => {
+      res.status(201).json(result.rows[0]);
+    })
+    .catch(err => next(err));
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {

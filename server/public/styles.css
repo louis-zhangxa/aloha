@@ -192,6 +192,19 @@ body {
   text-align: center;
 }
 
+.user-function {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.user-function button {
+  margin: 0 3rem;
+  border: 0 none;
+  border-radius: 0.3rem;
+  padding: 0.7rem;
+}
+
 .left-info,
 .right-info {
   padding: 1rem 2rem;
@@ -387,6 +400,11 @@ body {
 
   .attraction-photo img {
     width: 400px;
+  }
+
+  .user-function button {
+    cursor: pointer;
+    margin: 0 4rem;
   }
 
   .left-info,
