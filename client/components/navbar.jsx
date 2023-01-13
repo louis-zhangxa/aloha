@@ -10,11 +10,9 @@ export default class Navbar extends React.Component {
 
   modal() {
     if (this.state.modalClass === 'modal hidden') {
-      this.setState({ modalClass: 'modal' });
-      this.setState({ iconClass: 'fa-solid fa-xmark fa-2x modal-icon' });
+      this.setState({ modalClass: 'modal', iconClass: 'fa-solid fa-xmark fa-2x modal-icon' });
     } else {
-      this.setState({ modalClass: 'modal hidden' });
-      this.setState({ iconClass: 'fa-solid fa-bars fa-2x modal-icon' });
+      this.setState({ modalClass: 'modal hidden', iconClass: 'fa-solid fa-bars fa-2x modal-icon' });
     }
   }
 
