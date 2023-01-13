@@ -29,6 +29,20 @@ body {
   justify-content: center;
 }
 
+.sign-out {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.sign-out button {
+  margin-right: 1rem;
+  border: 0 none;
+  border-radius: 0.3rem;
+  padding: 0.5rem;
+  background-color: #a2c8b7;
+}
+
 .modal {
   display: flex;
   flex-direction: column;
@@ -42,13 +56,19 @@ body {
   background-color: #d1e7dd;
 }
 
-.modal-link {
+.modal-link,
+.modal-button {
   text-decoration: none;
   width: 100%;
   border: 0 solid;
   padding: 1.5rem 0;
   color: black;
   background-color: transparent;
+}
+
+.modal-button {
+  font-size: medium;
+  color: red;
 }
 
 .modal-hid {
@@ -106,7 +126,7 @@ body {
 .not-found-page a {
   color: white;
   text-decoration: none;
-  margin-top: 1rem;
+  margin: 1rem 0;
   padding: 0.8rem;
   border-radius: 0.3rem;
   background-color: #6d747d;
@@ -236,6 +256,11 @@ body {
   color: white;
 }
 
+.user-message {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
 @media only screen and (min-width: 400px) {
   .attraction-info-box img {
     width: 300px;
@@ -276,6 +301,14 @@ body {
     color: aqua;
   }
 
+  .sign-out button {
+    cursor: pointer;
+    margin-right: 2rem;
+    padding: 0.8rem;
+    background-color: #7c8983;
+    color: white;
+  }
+
   .modal-icon {
     cursor: pointer;
     color: white;
@@ -296,6 +329,11 @@ body {
   .modal-link {
     font-size: x-large;
     cursor: pointer;
+  }
+
+  .modal-button {
+    cursor: pointer;
+    font-size: x-large;
   }
 
   .home-page label {
@@ -357,7 +395,7 @@ body {
   }
 
   .desktop-user {
-    height: 80vh;
+    min-height: 80vh;
     justify-content: center;
     align-items: center;
   }
@@ -366,5 +404,10 @@ body {
     background-color: rgba(77, 70, 70, 0.8);
     color: white;
     font-size: larger;
+  }
+
+  .user button {
+    cursor: pointer;
+    padding: 1.2rem;
   }
 }

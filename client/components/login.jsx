@@ -3,25 +3,37 @@ import React from 'react';
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { account: '', password: '' };
+    this.state = { account: '', password: '', message: '' };
 
-    this.handleAccountChange = this.handleAccountChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleAccountChange(event) {
-    this.setState({ account: event.target.value });
-  }
-
-  handlePasswordChange(event) {
-    this.setState({ password: event.target.value });
+  handleChange(event) {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
   }
 
   handleSubmit(event) {
-    alert(this.state.password + ' and ' + this.state.password);
-    // window.location.hash = `#attractions?destination=${this.state.destination}`;
     event.preventDefault();
+    const req = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state)
+    };
+    fetch('/api/auth/log-in', req)
+      .then(res => res.json())
+      .then(result => {
+        if (result.token === undefined) {
+          this.setState({ account: '', password: '', message: result.error });
+        } else if (result.user && result.token) {
+          this.props.onSignIn(result);
+          window.location.hash = '#';
+        }
+      })
+      .catch(err => console.error(err));
   }
 
   render() {
@@ -33,16 +45,27 @@ export default class Login extends React.Component {
             <h4>New user? <a href="#signup">Create an account!</a></h4>
             <form onSubmit={this.handleSubmit}>
               <label htmlFor="account">Account</label>
-              <input type="text" name='account' value={this.state.account} onChange={this.handleAccountChange} required />
+              <input type="text" name='account' value={this.state.account} onChange={this.handleChange} required />
               <label htmlFor="password">Password</label>
-              <input type="password" name='password' value={this.state.password} onChange={this.handlePasswordChange} required />
+              <input type="password" name='password' value={this.state.password} onChange={this.handleChange} required />
               <div className='user-button'>
                 <button type='submit'>Log in</button>
               </div>
             </form>
+            <h4 className='user-message'>{this.state.message}</h4>
           </div>
         </div>
       </div>
     );
   }
 }
+
+// console.log('as' + result);
+//         // fetch('/api/hello', {
+//         //   method: 'GET',
+//         //   headers: {
+//         //     'x-access-token': result.token
+//         //   }
+//         // })
+//         //   .then(res => res.json())
+//         //   .then(mes => console.log(mes));
