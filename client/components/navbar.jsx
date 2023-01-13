@@ -10,11 +10,9 @@ export default class Navbar extends React.Component {
 
   modal() {
     if (this.state.modalClass === 'modal hidden') {
-      this.setState({ modalClass: 'modal' });
-      this.setState({ iconClass: 'fa-solid fa-xmark fa-2x modal-icon' });
+      this.setState({ modalClass: 'modal', iconClass: 'fa-solid fa-xmark fa-2x modal-icon' });
     } else {
-      this.setState({ modalClass: 'modal hidden' });
-      this.setState({ iconClass: 'fa-solid fa-bars fa-2x modal-icon' });
+      this.setState({ modalClass: 'modal hidden', iconClass: 'fa-solid fa-bars fa-2x modal-icon' });
     }
   }
 
@@ -28,9 +26,9 @@ export default class Navbar extends React.Component {
         </div>
         <div className={this.state.modalClass}>
           <div className="col-30 modal-self">
-            <a onClick={this.modal} href="" className='modal-link'>Log In</a>
+            <a onClick={this.modal} href="#login" className='modal-link'>Log In</a>
             <a onClick={this.modal} href="" className='modal-link'>My favorite</a>
-            <a onClick={this.modal} href="" className='modal-link'>Sign Out</a>
+            <a onClick={this.modal} href="#signup" className='modal-link'>Sign Up</a>
             <a onClick={this.modal} href="#connect" className='modal-link'>Connect us!</a>
           </div>
           <div className="col-70 modal-hid" onClick={this.modal} />

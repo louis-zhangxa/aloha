@@ -4,6 +4,7 @@ import HomePage from './pages/home';
 import NotFoundPage from './pages/not-found';
 import AttractionListPage from './pages/attraction-list';
 import AttractionDetailPage from './pages/attraction-detail';
+import User from './pages/user';
 import parseRoute from './lib/parse-route';
 import changeBackground from './lib/change-background';
 
@@ -35,6 +36,9 @@ export default class App extends React.Component {
     if (route.path === 'attractiondetail') {
       const attraction = route.params.get('attraction');
       return <AttractionDetailPage attraction={attraction} />;
+    }
+    if (route.path === 'login' || route.path === 'signup') {
+      return <User />;
     }
     return <NotFoundPage />;
   }

@@ -30,7 +30,7 @@ export default class NotFoundPage extends React.Component {
             <img src={this.state.photoUrl} alt="Contact me placeholder" />
             <h2>Hi! I am Louis Zhang, a full stack developer!</h2>
             <h2>If you want to reachout, please use the email below!</h2>
-            <h2>Louiszhangwork@gmail.com</h2>
+            <a href="mailto:Louiszhangwork@gmail.com" id='email'>Louiszhangwork@gmail.com</a>
             <a href="#">Back to Home!</a>
           </div>
         </div>
