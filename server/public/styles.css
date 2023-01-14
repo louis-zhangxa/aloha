@@ -1,0 +1,440 @@
+body {
+  background-image: url("./images/mobile.jpg");
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.navbar {
+  background-color: #d1e7dd;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.navbar a {
+  text-decoration: none;
+  border: 0 solid;
+  background-color: transparent;
+  font-size: large;
+  color: black;
+}
+
+.modal-icon {
+  padding: 1rem;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+}
+
+.sign-out {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.sign-out button,
+.sign-out a {
+  font-size: medium;
+  text-decoration: none;
+  margin-right: 1rem;
+  border: 0 none;
+  border-radius: 0.3rem;
+  padding: 0.5rem;
+  background-color: #a2c8b7;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.modal-self {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: #d1e7dd;
+}
+
+.modal-link,
+.modal-button {
+  text-decoration: none;
+  width: 100%;
+  border: 0 solid;
+  padding: 1.5rem 0;
+  color: black;
+  background-color: transparent;
+}
+
+.modal-button {
+  font-size: medium;
+  color: red;
+}
+
+.modal-hid {
+  background-color: rgb(50 50 50 / 75%);
+}
+
+.home-page {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.home-page label {
+  font-size: x-large;
+  margin-bottom: 4rem;
+}
+
+.home-page input {
+  border: 1px solid #ced4da;
+  border-radius: 0.3rem;
+  padding: 1rem 5rem 1rem 0.5rem;
+  margin: 0 1rem 4rem;
+}
+
+.home-page button {
+  border: 0 transparent;
+  border-radius: 0.3rem;
+  background-color: #6d747d;
+  color: white;
+  padding: 1rem;
+}
+
+.not-found-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.not-found-page img {
+  padding: 1rem;
+  width: 250px;
+  height: 250px;
+}
+
+.not-found-page h2 {
+  margin: 1rem 2rem;
+  color: black;
+  text-align: center;
+  font-size: large;
+}
+
+.not-found-page a {
+  color: white;
+  text-decoration: none;
+  margin: 1rem 0;
+  padding: 0.8rem;
+  border-radius: 0.3rem;
+  background-color: #6d747d;
+}
+
+#email {
+  text-decoration: underline;
+  margin: 0.5rem 2rem;
+  font-size: large;
+  font-weight: bold;
+  color: skyblue;
+  background-color: transparent;
+}
+
+.attraction-card-list {
+  padding: 1rem;
+  justify-content: center;
+}
+
+.attraction-card {
+  padding: 1rem;
+}
+
+.attraction-info-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.719);
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+}
+
+.attraction-info-box:hover {
+  transform: scale(1.08);
+  transition: 1s;
+}
+
+.attraction-info-box img {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+}
+
+.attraction-info-box h3,
+.attraction-info-box h4,
+.attraction-info-box h5 {
+  text-align: center;
+  margin: 0.5rem;
+}
+
+.attraction-photo {
+  justify-content: center;
+}
+
+.attraction-photo img {
+  width: 300px;
+  object-fit: cover;
+  padding: 1rem;
+}
+
+.attraction-info h1 {
+  width: 100%;
+  text-align: center;
+}
+
+.user-function {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.user-function button {
+  margin: 0 3rem;
+  border: 0 none;
+  border-radius: 0.3rem;
+  padding: 0.7rem;
+}
+
+.left-info,
+.right-info {
+  padding: 1rem 2rem;
+}
+
+.left-info li {
+  padding: 0.5rem 0;
+}
+
+.left-info a {
+  text-decoration: none;
+  color: aqua;
+}
+
+.right-info p {
+  line-height: 1.5rem;
+}
+
+.user h1 {
+  padding: 0.7rem 0;
+}
+
+.user h4 {
+  font-weight: normal;
+  margin-bottom: 0.5rem;
+}
+
+.user a {
+  text-decoration: none;
+  color: #1876d2;
+}
+
+.user form {
+  display: flex;
+  flex-direction: column;
+}
+
+.user label {
+  margin-top: 1rem;
+}
+
+.user input {
+  margin: 0.5rem 0;
+  padding: 0.5rem 0.3rem;
+  border: 0 none;
+  background-color: rgba(71, 75, 74, 0.734);
+  color: white;
+}
+
+.user-button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.user button {
+  margin-top: 1rem;
+  padding: 0.8rem;
+  border: 0 none;
+  border-radius: 0.3rem;
+  background-color: rgba(71, 75, 74, 0.734);
+  color: white;
+}
+
+.user-message {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.save {
+  color: red;
+}
+
+@media only screen and (min-width: 400px) {
+  .attraction-info-box img {
+    width: 300px;
+    height: 300px;
+  }
+
+  .not-found-page img {
+    width: 300px;
+    height: 300px;
+  }
+
+  .not-found-page h2 {
+    margin: 1.2rem;
+  }
+}
+
+@media only screen and (min-width: 570px) {
+  body {
+    background-image: url("./images/desktop.jpg");
+  }
+
+  .overlay {
+    background-image: url("./images/desktop-overlay.svg") !important;
+  }
+
+  .navbar {
+    background-color: #343a40;
+  }
+
+  .navbar a {
+    padding: 1rem;
+    font-size: x-large;
+    color: white;
+    cursor: pointer;
+  }
+
+  .aloha:hover {
+    color: aqua;
+  }
+
+  .sign-out button,
+  .sign-out a {
+    cursor: pointer;
+    font-size: medium;
+    margin-right: 2rem;
+    padding: 0.8rem;
+    background-color: #7c8983;
+    color: white;
+  }
+
+  .modal-icon {
+    cursor: pointer;
+    color: white;
+  }
+
+  .modal {
+    flex-direction: row;
+  }
+
+  .modal-self {
+    background-color: white;
+  }
+
+  .modal-hid {
+    background-color: rgb(50 50 50 / 75%);
+  }
+
+  .modal-link {
+    font-size: x-large;
+    cursor: pointer;
+  }
+
+  .modal-button {
+    cursor: pointer;
+    font-size: x-large;
+  }
+
+  .home-page label {
+    color: #e1f3f2;
+    font-size: xx-large;
+    margin: 3rem 0;
+  }
+
+  .home-page input {
+    padding: 1rem 15rem 1rem 0.5rem;
+    margin: 0 1rem 6rem;
+  }
+
+  .home-page button {
+    font-size: large;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+  }
+
+  .not-found-page img {
+    width: 400px;
+    height: 400px;
+  }
+
+  .not-found-page h2 {
+    margin: 2rem;
+    color: white;
+    font-size: x-large;
+  }
+
+  #email {
+    margin: 0.5rem 2rem;
+    font-size: x-large;
+  }
+
+  .attraction-info-box {
+    cursor: pointer;
+  }
+
+  .attraction-info-box img {
+    width: 400px;
+    height: 400px;
+  }
+
+  .attraction-info-box h3,
+  .attraction-info-box h4,
+  .attraction-info-box h5 {
+    margin: 0.8rem;
+  }
+
+  .attraction-photo img {
+    width: 400px;
+  }
+
+  .user-function button {
+    cursor: pointer;
+    margin: 0 4rem;
+  }
+
+  .left-info,
+  .right-info {
+    padding: 2rem;
+  }
+
+  .desktop-user {
+    min-height: 80vh;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .user input {
+    background-color: rgba(77, 70, 70, 0.8);
+    color: white;
+    font-size: larger;
+  }
+
+  .user button {
+    cursor: pointer;
+    padding: 1.2rem;
+  }
+}
