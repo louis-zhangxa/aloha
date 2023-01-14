@@ -44,6 +44,7 @@ export default class App extends React.Component {
   handleSignOut() {
     window.localStorage.removeItem('react-context-jwt');
     this.setState({ user: null });
+    window.location.hash = '#';
   }
 
   renderPage() {

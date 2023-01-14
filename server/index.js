@@ -136,7 +136,8 @@ app.post('/api/fav/data', (req, res, next) => {
   }
   const sqlCheck = `
     select "userId",
-           "placeId"
+           "placeId",
+           "favoriteId"
       from "favoriteList"
      where "userId" = $1 and "placeId" = $2
   `;
@@ -146,7 +147,7 @@ app.post('/api/fav/data', (req, res, next) => {
       if (result.rows[0] === undefined) {
         res.json('Not exist');
       } else {
-        res.json('Exist');
+        res.json(result.rows[0]);
       }
     })
     .catch(err => next(err));
@@ -197,6 +198,82 @@ app.delete('/api/fav/delete', (req, res, next) => {
             `;
   const params = [placeId, userId];
   db.query(sql, params)
+    .catch(err => next(err));
+});
+
+app.post('/api/comment/get', (req, res, next) => {
+  const { placeId, userId } = req.body;
+  if (!placeId || !userId) {
+    throw new ClientError(400, 'info error');
+  }
+  const sqlCheck = `
+    select "placeId",
+          "userId",
+           "comment"
+      from "comments"
+     where "placeId" = $1 and "userId" = $2
+  `;
+  const paramsCheck = [placeId, userId];
+  db.query(sqlCheck, paramsCheck)
+    .then(result => {
+      res.json(result.rows[0].comment);
+    })
+    .catch(err => res.status(204).send(err));
+});
+
+app.post('/api/comment/upload', (req, res, next) => {
+  const { placeId, userId, comment } = req.body;
+  if (!placeId || !userId || !comment) {
+    throw new ClientError(400, 'info error');
+  }
+  const sqlCheck = `
+    select "placeId",
+          "userId",
+           "comment"
+      from "comments"
+     where "placeId" = $1 and "userId" = $2
+  `;
+  const paramsCheck = [placeId, userId];
+  db.query(sqlCheck, paramsCheck)
+    .then(result => {
+      if (result.rows[0] === undefined) {
+        const sql = `
+        insert into "comments" ("placeId", "userId", "comment")
+  values ($1, $2, $3)
+  returning "placeId", "userId", "comment"
+      `;
+        const params = [placeId, userId, comment];
+        db.query(sql, params)
+          .then(result => res.json(comment))
+          .catch(err => next(err));
+      } else if (result.rows[0].comment !== comment) {
+        const sql = `
+        update "comments"
+   set "comment" = $3
+ where "placeId" = $1 and "userId" = $2
+      `;
+        const params = [placeId, userId, comment];
+        db.query(sql, params)
+          .then(result => res.json(comment))
+          .catch(err => next(err));
+      }
+    })
+    .catch(err => next(err));
+});
+
+app.delete('/api/comment/delete', (req, res, next) => {
+  const { placeId, userId } = req.body;
+  if (!placeId || !userId) {
+    throw new ClientError(400, 'info error');
+  }
+  const sql = `delete
+            from "comments"
+            where "placeId" = $1 and "userId" = $2
+            returning *
+            `;
+  const params = [placeId, userId];
+  db.query(sql, params)
+    .then(res.json('Deleted Success!'))
     .catch(err => next(err));
 });
 

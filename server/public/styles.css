@@ -190,9 +190,24 @@ body {
   padding: 1rem;
 }
 
-.attraction-info h1 {
+.attraction-info h1,
+.attraction-comment h1,
+.attraction-comment h3 {
   width: 100%;
   text-align: center;
+}
+
+.attraction-comment form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.comment-save {
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
 }
 
 .user-function {
@@ -206,6 +221,26 @@ body {
   border: 0 none;
   border-radius: 0.3rem;
   padding: 0.7rem;
+}
+
+.comment-action {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 1rem;
+}
+
+.save-button,
+.delete-button,
+.back-button {
+  background-color: #709dca;
+  border: 0 none;
+  border-radius: 0.3rem;
+  padding: 0.5rem 1rem;
+  color: white;
+}
+
+.delete-button {
+  background-color: #dc3544;
 }
 
 .left-info,
@@ -303,7 +338,7 @@ body {
   }
 
   .overlay {
-    background-image: url("./images/desktop-overlay.svg") !important;
+    background-image: url("./images/desktop-overlay.png") !important;
   }
 
   .navbar {
@@ -414,6 +449,15 @@ body {
   .user-function button {
     cursor: pointer;
     margin: 0 4rem;
+  }
+
+  .comment-action {
+    margin-top: 3rem;
+  }
+
+  .comment-save button,
+  .comment-action button {
+    cursor: pointer;
   }
 
   .left-info,
