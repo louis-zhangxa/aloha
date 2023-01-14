@@ -7,6 +7,7 @@ import Navbar from './components/navbar';
 import HomePage from './pages/home';
 import NotFoundPage from './pages/not-found';
 import AttractionListPage from './pages/attraction-list';
+import FavListPage from './pages/fav-list';
 import AttractionDetailPage from './pages/attraction-detail';
 import User from './pages/user';
 
@@ -54,6 +55,9 @@ export default class App extends React.Component {
     if (route.path === 'attractions') {
       const destination = route.params.get('destination');
       return <AttractionListPage destination={destination} />;
+    }
+    if (route.path === 'favlist') {
+      return <FavListPage />;
     }
     if (route.path === 'attractiondetail') {
       const attraction = route.params.get('attraction');

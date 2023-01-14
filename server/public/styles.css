@@ -35,7 +35,10 @@ body {
   align-items: center;
 }
 
-.sign-out button {
+.sign-out button,
+.sign-out a {
+  font-size: medium;
+  text-decoration: none;
   margin-right: 1rem;
   border: 0 none;
   border-radius: 0.3rem;
@@ -274,6 +277,10 @@ body {
   text-align: center;
 }
 
+.save {
+  color: red;
+}
+
 @media only screen and (min-width: 400px) {
   .attraction-info-box img {
     width: 300px;
@@ -314,8 +321,10 @@ body {
     color: aqua;
   }
 
-  .sign-out button {
+  .sign-out button,
+  .sign-out a {
     cursor: pointer;
+    font-size: medium;
     margin-right: 2rem;
     padding: 0.8rem;
     background-color: #7c8983;

@@ -113,21 +113,90 @@ app.get('/api/hello', (req, res) => {
   res.json({ hello: 'world' });
 });
 
+app.get('/api/fav/:id', (req, res, next) => {
+  if (!req.params.id) {
+    throw new ClientError(400, 'User does not exit');
+  } else {
+    const sql = `
+    select "placeId"
+      from "favoriteList"
+     where "userId" = $1
+    `;
+    const params = [req.params.id];
+    db.query(sql, params)
+      .then(result => res.send(result.rows))
+      .catch(err => next(err));
+  }
+});
+
+app.post('/api/fav/data', (req, res, next) => {
+  const { placeId, userId } = req.body;
+  if (!placeId || !userId) {
+    throw new ClientError(400, 'info error');
+  }
+  const sqlCheck = `
+    select "userId",
+           "placeId"
+      from "favoriteList"
+     where "userId" = $1 and "placeId" = $2
+  `;
+  const paramsCheck = [userId, placeId];
+  db.query(sqlCheck, paramsCheck)
+    .then(result => {
+      if (result.rows[0] === undefined) {
+        res.json('Not exist');
+      } else {
+        res.json('Exist');
+      }
+    })
+    .catch(err => next(err));
+});
+
 app.post('/api/fav/upload', (req, res, next) => {
   const { placeId, userId } = req.body;
   if (!placeId || !userId) {
     throw new ClientError(400, 'info error');
   }
-  const sql = `
+  const sqlCheck = `
+    select "userId",
+           "placeId"
+      from "favoriteList"
+     where "userId" = $1 and "placeId" = $2
+  `;
+  const paramsCheck = [userId, placeId];
+  db.query(sqlCheck, paramsCheck)
+    .then(result => {
+      if (result.rows[0] === undefined) {
+        const sql = `
   insert into "favoriteList" ("userId", "placeId")
   values ($1, $2)
   returning "favoriteId", "placeId"
   `;
-  const params = [userId, placeId];
-  db.query(sql, params)
-    .then(result => {
-      res.status(201).json(result.rows[0]);
+        const params = [userId, placeId];
+        db.query(sql, params)
+          .then(result => {
+            res.status(201).json(result.rows[0]);
+          })
+          .catch(err => next(err));
+      } else {
+        throw new ClientError(400, 'already exist');
+        // res.status(201).json('Already exist');
+      }
     })
+    .catch(err => next(err));
+});
+
+app.delete('/api/fav/delete', (req, res, next) => {
+  const { placeId, userId } = req.body;
+  if (!placeId || !userId) {
+    throw new ClientError(400, 'info error');
+  }
+  const sql = `delete
+            from "favoriteList"
+            where "placeId" = $1 and "userId" = $2
+            `;
+  const params = [placeId, userId];
+  db.query(sql, params)
     .catch(err => next(err));
 });
 
