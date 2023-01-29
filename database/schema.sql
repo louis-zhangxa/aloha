@@ -6,7 +6,7 @@ drop schema "public" cascade;
 
 create schema "public";
 
- CREATE TABLE "users" (
+CREATE TABLE "users" (
 	"userId" serial NOT NULL,
 	"userName" TEXT NOT NULL UNIQUE,
 	"hashedPassword" TEXT NOT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE "favoriteList" (
 
 CREATE TABLE "comments" (
 	"commentId" serial NOT NULL,
-	"favoriteId" integer NOT NULL,
+	"placeId" TEXT NOT NULL,
 	"userId" integer NOT NULL,
 	"comment" TEXT NOT NULL,
 	CONSTRAINT "comments_pk" PRIMARY KEY ("commentId")
@@ -43,5 +43,5 @@ CREATE TABLE "comments" (
 
 ALTER TABLE "favoriteList" ADD CONSTRAINT "favoriteList_fk0" FOREIGN KEY ("userId") REFERENCES "users"("userId");
 
-ALTER TABLE "comments" ADD CONSTRAINT "comments_fk0" FOREIGN KEY ("favoriteId") REFERENCES "favoriteList"("favoriteId");
+ALTER TABLE "comments" ADD CONSTRAINT "comments_fk0" FOREIGN KEY ("placeId") REFERENCES "favoriteList"("placeId");
 ALTER TABLE "comments" ADD CONSTRAINT "comments_fk1" FOREIGN KEY ("userId") REFERENCES "users"("userId");

@@ -4,12 +4,17 @@ import AppContext from '../lib/app-context';
 export default class AttractionDetailPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { attraction: null, photo1: '', photo2: '', photo3: '', class: '' };
+    this.state = { attraction: null, photo1: '', photo2: '', photo3: '', classHeart: '', classPen: 'row attraction-info', comment: 'attraction-comment hidden', favoriteId: null, userComment: '', deleted: '' };
     this.photos = this.photos.bind(this);
     this.openingHours = this.openingHours.bind(this);
     this.website = this.website.bind(this);
     this.userFunction = this.userFunction.bind(this);
     this.saveAttraction = this.saveAttraction.bind(this);
+    this.startComment = this.startComment.bind(this);
+    this.stopComment = this.stopComment.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.commentSubmit = this.commentSubmit.bind(this);
+    this.commentDelete = this.commentDelete.bind(this);
   }
 
   componentDidMount() {
@@ -26,11 +31,29 @@ export default class AttractionDetailPage extends React.Component {
       fetch('/api/fav/data', req)
         .then(res => res.json())
         .then(msg => {
-          if (msg === 'Exist') {
-            this.setState({ class: 'save' });
+          if (msg !== 'Not exist') {
+            this.setState({ classHeart: 'save', favoriteId: msg.favoriteId });
           }
         })
         .catch(err => console.error(err));
+      fetch('/api/comment/get', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-access-token': window.localStorage.getItem('react-context-jwt')
+        },
+        body: JSON.stringify(info)
+      })
+        .then(res => {
+          return res.json();
+        })
+        .then(comment => {
+          if (comment.error === undefined) {
+            this.setState({ userComment: comment, usercomment: comment });
+          }
+        })
+        .catch(err => console.error(err));
+
     }
     fetch(`/api/attraction/${this.props.attraction}`)
       .then(res => res.json())
@@ -90,15 +113,93 @@ export default class AttractionDetailPage extends React.Component {
     }
   }
 
+  comment() {
+    return (
+      <div className={this.state.comment}>
+        <h1>My comments</h1>
+        <form action="" onSubmit={this.commentSubmit}>
+          <textarea name="usercomment" id="comment" cols="30" rows="10" value={this.state.usercomment} onChange={this.handleChange} required/>
+          <div className='comment-save'>
+            <button type='submit' className='save-button'>SAVE</button>
+          </div>
+        </form>
+        <div className='comment-action'>
+          <button className='delete-button' onClick={this.commentDelete}>DELETE</button>
+          <button className='back-button' onClick={this.stopComment}>Back</button>
+        </div>
+        <h3>{this.state.deleted}</h3>
+      </div>
+    );
+  }
+
+  showComment() {
+    if (this.state.userComment !== '') {
+      return (
+        <div>
+          <h3>My Comment</h3>
+          <p>{this.state.userComment}</p>
+        </div>
+      );
+    }
+  }
+
   userFunction() {
     if (this.context.user) {
       return (
         <div className='user-function'>
-          <button onClick={this.saveAttraction} className={this.state.class}><i className='fa-solid fa-heart' /></button>
-          <button><i className="fa-solid fa-pen-nib" /></button>
+          <button onClick={this.saveAttraction} className={this.state.classHeart}><i className='fa-solid fa-heart' /></button>
+          <button onClick={this.startComment}><i className="fa-solid fa-pen-nib" /></button>
         </div>
       );
     }
+  }
+
+  handleChange(event) {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  }
+
+  startComment() {
+    this.setState({ classPen: 'row attraction-info hidden', comment: 'attraction-comment', deleted: '' });
+  }
+
+  stopComment() {
+    this.setState({ classPen: 'row attraction-info', comment: 'attraction-comment hidden' });
+  }
+
+  commentSubmit(event) {
+    event.preventDefault();
+    const info = { placeId: this.props.attraction, userId: this.context.user.userId, comment: this.state.usercomment };
+    const req = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-access-token': window.localStorage.getItem('react-context-jwt')
+      },
+      body: JSON.stringify(info)
+    };
+    fetch('/api/comment/upload', req)
+      .then(res => res.json())
+      .then(msg => {
+        this.setState({ userComment: msg, classPen: 'row attraction-info', comment: 'attraction-comment hidden' });
+      })
+      .catch(err => console.error(err));
+  }
+
+  commentDelete(event) {
+    const info = { placeId: this.props.attraction, userId: this.context.user.userId, comment: this.state.usercomment };
+    const req = {
+      method: 'delete',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-access-token': window.localStorage.getItem('react-context-jwt')
+      },
+      body: JSON.stringify(info)
+    };
+    fetch('/api/comment/delete', req)
+      .then(res => res.json())
+      .then(msg => this.setState({ deleted: msg, userComment: '', usercomment: '' }))
+      .catch(err => console.error(err));
   }
 
   saveAttraction() {
@@ -117,7 +218,7 @@ export default class AttractionDetailPage extends React.Component {
         if (result.error) {
           this.deleteAttraction(info.placeId, info.userId);
         } else {
-          this.setState({ class: 'save' });
+          this.setState({ classHeart: 'save' });
         }
       })
       .catch(err => console.error(err));
@@ -134,7 +235,7 @@ export default class AttractionDetailPage extends React.Component {
       body: JSON.stringify(info)
     };
     fetch('/api/fav/delete', req)
-      .then(this.setState({ class: '' }))
+      .then(this.setState({ classHeart: '' }))
       .catch(err => console.error(err));
   }
 
@@ -144,7 +245,8 @@ export default class AttractionDetailPage extends React.Component {
       return (
         <div>
           {this.photos()}
-          <div className='row attraction-info'>
+          {this.comment()}
+          <div className={this.state.classPen}>
             <h1>{attraction.name}</h1>
             {this.userFunction()}
             <div className='column-half left-info'>
@@ -158,6 +260,7 @@ export default class AttractionDetailPage extends React.Component {
               <h3>Reviews from google</h3>
               <p>{attraction.reviews[0].text} by {attraction.reviews[0].author_name}</p>
               <p>{attraction.reviews[1].text} by {attraction.reviews[1].author_name}</p>
+              {this.showComment()}
             </div>
           </div>
         </div>
