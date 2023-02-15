@@ -1,4 +1,4 @@
-# student-grade-table
+# Aloha (Attractions finder)
 
 A full-stack web application for travelers who want to find attractions in a specific area quickly.
 
