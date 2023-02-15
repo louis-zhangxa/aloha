@@ -14,6 +14,7 @@ As a person who loves traveling, I was always headache about finding the interes
 - PostgreSQL
 - Node.js
 - Express.js
+- MongoDB
 - HTML5
 - CSS3
 - Heroku
