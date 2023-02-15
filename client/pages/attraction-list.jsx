@@ -18,11 +18,15 @@ export default class AttractionListPage extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <AttractionCard attraction={this.state.attraction}/>
-      </div>
-    );
+    if (this.state.attraction) {
+      return (
+        <div>
+          <AttractionCard attraction={this.state.attraction} />
+        </div>
+      );
+    } else {
+      window.location.hash = 'noattractions';
+    }
   }
 }
 

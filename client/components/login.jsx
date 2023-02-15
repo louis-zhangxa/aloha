@@ -7,11 +7,37 @@ export default class Login extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.demoLogIn = this.demoLogIn.bind(this);
   }
 
   handleChange(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
+  }
+
+  demoLogIn(event) {
+    const demoUser = {
+      account: 'Demo',
+      password: 'demo1234'
+    };
+    const req = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(demoUser)
+    };
+    fetch('/api/auth/log-in', req)
+      .then(res => res.json())
+      .then(result => {
+        if (result.token === undefined) {
+          this.setState({ account: '', password: '', message: result.error });
+        } else if (result.user && result.token) {
+          this.props.onSignIn(result);
+          window.location.hash = '#';
+        }
+      })
+      .catch(err => console.error(err));
   }
 
   handleSubmit(event) {
@@ -49,6 +75,7 @@ export default class Login extends React.Component {
               <label htmlFor="password">Password</label>
               <input type="password" name='password' value={this.state.password} onChange={this.handleChange} required />
               <div className='user-button'>
+                <button onClick={this.demoLogIn}>Demo</button>
                 <button type='submit'>Log in</button>
               </div>
             </form>

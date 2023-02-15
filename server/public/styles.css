@@ -18,9 +18,11 @@ body {
   background-color: transparent;
   font-size: large;
   color: black;
+  cursor: pointer;
 }
 
 .modal-icon {
+  cursor: pointer;
   padding: 1rem;
 }
 
@@ -37,6 +39,7 @@ body {
 
 .sign-out button,
 .sign-out a {
+  cursor: pointer;
   font-size: medium;
   text-decoration: none;
   margin-right: 1rem;
@@ -55,12 +58,14 @@ body {
 .modal-self {
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   text-align: center;
   background-color: #d1e7dd;
 }
 
 .modal-link,
 .modal-button {
+  cursor: pointer;
   text-decoration: none;
   width: 100%;
   border: 0 solid;
@@ -99,6 +104,7 @@ body {
 }
 
 .home-page button {
+  cursor: pointer;
   border: 0 transparent;
   border-radius: 0.3rem;
   background-color: #6d747d;
@@ -154,6 +160,7 @@ body {
 }
 
 .attraction-info-box {
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -168,8 +175,8 @@ body {
 }
 
 .attraction-info-box img {
-  width: 250px;
-  height: 250px;
+  width: 230px;
+  height: 230px;
   object-fit: cover;
 }
 
@@ -217,6 +224,7 @@ body {
 }
 
 .user-function button {
+  cursor: pointer;
   margin: 0 3rem;
   border: 0 none;
   border-radius: 0.3rem;
@@ -227,6 +235,11 @@ body {
   display: flex;
   justify-content: space-evenly;
   margin-top: 1rem;
+}
+
+.comment-save button,
+.comment-action button {
+  cursor: pointer;
 }
 
 .save-button,
@@ -295,10 +308,15 @@ body {
 .user-button {
   width: 100%;
   display: flex;
+  justify-content: space-between;
+}
+
+.sign-up {
   justify-content: center;
 }
 
 .user button {
+  cursor: pointer;
   margin-top: 1rem;
   padding: 0.8rem;
   border: 0 none;
@@ -316,23 +334,78 @@ body {
   color: red;
 }
 
-@media only screen and (min-width: 400px) {
+@media only screen and (min-width: 768px) {
   .attraction-info-box img {
     width: 300px;
     height: 300px;
   }
 
   .not-found-page img {
-    width: 300px;
-    height: 300px;
+    margin-top: 2rem;
+    width: 500px;
+    height: 500px;
   }
 
   .not-found-page h2 {
-    margin: 1.2rem;
+    font-size: x-large;
+    margin: 2rem;
+  }
+
+  .home-page label {
+    font-size: xx-large;
+    margin: 3rem 0;
+  }
+
+  .home-page input {
+    padding: 1rem 15rem 1rem 0.5rem;
+    margin: 0 1rem 6rem;
+  }
+
+  .home-page button {
+    font-size: large;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .modal-link,
+  .modal-button {
+    font-size: x-large;
+    padding: 3rem;
+  }
+
+  .attraction-card {
+    padding: 0.5rem;
+  }
+
+  .user-function button {
+    background-color: rgb(221, 215, 215);
+  }
+
+  .save-button,
+  .delete-button,
+  .back-button {
+    padding: 0.7rem 1.4rem;
+    margin: 1rem;
+  }
+
+  .desktop-user {
+    min-height: 80vh;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .user input {
+    background-color: rgba(77, 70, 70, 0.8);
+    color: white;
+    font-size: larger;
+  }
+
+  .user button {
+    padding: 1.2rem;
   }
 }
 
-@media only screen and (min-width: 570px) {
+@media only screen and (min-width: 1280px) {
   body {
     background-image: url("./images/desktop.jpg");
   }
@@ -349,7 +422,6 @@ body {
     padding: 1rem;
     font-size: x-large;
     color: white;
-    cursor: pointer;
   }
 
   .aloha:hover {
@@ -358,7 +430,6 @@ body {
 
   .sign-out button,
   .sign-out a {
-    cursor: pointer;
     font-size: medium;
     margin-right: 2rem;
     padding: 0.8rem;
@@ -367,7 +438,6 @@ body {
   }
 
   .modal-icon {
-    cursor: pointer;
     color: white;
   }
 
@@ -376,6 +446,7 @@ body {
   }
 
   .modal-self {
+    justify-content: flex-start;
     background-color: white;
   }
 
@@ -383,32 +454,8 @@ body {
     background-color: rgb(50 50 50 / 75%);
   }
 
-  .modal-link {
-    font-size: x-large;
-    cursor: pointer;
-  }
-
-  .modal-button {
-    cursor: pointer;
-    font-size: x-large;
-  }
-
   .home-page label {
     color: #e1f3f2;
-    font-size: xx-large;
-    margin: 3rem 0;
-  }
-
-  .home-page input {
-    padding: 1rem 15rem 1rem 0.5rem;
-    margin: 0 1rem 6rem;
-  }
-
-  .home-page button {
-    font-size: large;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    cursor: pointer;
   }
 
   .not-found-page img {
@@ -427,8 +474,8 @@ body {
     font-size: x-large;
   }
 
-  .attraction-info-box {
-    cursor: pointer;
+  .attraction-card {
+    padding: 1rem;
   }
 
   .attraction-info-box img {
@@ -447,7 +494,6 @@ body {
   }
 
   .user-function button {
-    cursor: pointer;
     margin: 0 4rem;
   }
 
@@ -455,30 +501,8 @@ body {
     margin-top: 3rem;
   }
 
-  .comment-save button,
-  .comment-action button {
-    cursor: pointer;
-  }
-
   .left-info,
   .right-info {
-    padding: 2rem;
-  }
-
-  .desktop-user {
-    min-height: 80vh;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .user input {
-    background-color: rgba(77, 70, 70, 0.8);
-    color: white;
-    font-size: larger;
-  }
-
-  .user button {
-    cursor: pointer;
-    padding: 1.2rem;
+    padding: 2rem 7rem;
   }
 }

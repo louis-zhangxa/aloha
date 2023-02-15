@@ -46,12 +46,18 @@ li {
   width: 100%;
 }
 
-@media only screen and (min-width: 570px) {
+@media only screen and (min-width: 768px) {
   .column-third {
-    flex-basis: calc(100% / 3);
+    flex-basis: 50%;
   }
 
   .column-half {
     flex-basis: 50%;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .column-third {
+    flex-basis: calc(100% / 3);
   }
 }

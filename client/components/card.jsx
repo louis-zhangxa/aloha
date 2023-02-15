@@ -41,7 +41,7 @@ export default class Card extends React.Component {
           <img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photo_reference=${this.photo}&key=AIzaSyCF9bG6U4JFw5LcqXZm-mVh6sdoj7uY1S8`} alt="" />
           <h3>{name}</h3>
           <h4>{vicinity}</h4>
-          <h5>rating: {rating} by {userRatingTotal} people</h5>
+          <h5>Rated: {rating} by {userRatingTotal} people</h5>
         </div>
       </li>
     );

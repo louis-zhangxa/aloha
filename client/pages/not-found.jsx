@@ -13,6 +13,17 @@ export default class NotFoundPage extends React.Component {
   }
 
   render() {
+    if (window.location.hash === '#noattractions') {
+      return (
+        <div>
+          <div className='not-found-page'>
+            <img src={this.state.photoUrl} alt="Page not found placeholder" />
+            <h2>Oops, We can&#39;t find anything!</h2>
+            <a href="#">Back to Home!</a>
+          </div>
+        </div>
+      );
+    }
     if (window.location.hash === '#favlist') {
       return (
         <div>
