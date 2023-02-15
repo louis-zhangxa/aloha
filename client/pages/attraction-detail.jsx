@@ -258,8 +258,8 @@ export default class AttractionDetailPage extends React.Component {
             <div className='column-half right-info'>
               <h3>Rating from Google: {attraction.rating}</h3>
               <h3>Reviews from google</h3>
-              <p>{attraction.reviews[0].text} by {attraction.reviews[0].author_name}</p>
-              <p>{attraction.reviews[1].text} by {attraction.reviews[1].author_name}</p>
+              <p>&#34;{attraction.reviews[0].text}&#34; by {attraction.reviews[0].author_name}</p>
+              <p>&#34;{attraction.reviews[1].text}&#34; by {attraction.reviews[1].author_name}</p>
               {this.showComment()}
             </div>
           </div>
