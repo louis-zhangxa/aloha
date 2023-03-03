@@ -1,9 +1,9 @@
 require('dotenv/config');
-// const path = require('path');
 const pg = require('pg');
 const argon2 = require('argon2');
 const jwt = require('jsonwebtoken');
 const express = require('express');
+const axios = require('axios');
 const staticMiddleware = require('./static-middleware');
 const ClientError = require('./client-error');
 const errorMiddleware = require('./error-middleware');
@@ -16,8 +16,6 @@ const db = new pg.Pool({
   }
 });
 
-// const publicPath = path.join(__dirname, 'public');
-
 const app = express();
 
 const jsonMiddleware = express.json();
@@ -29,9 +27,9 @@ app.get('/api/list/:destination', (req, res, next) => {
   if (!req.params.destination) {
     throw new ClientError(400, 'Please put a valid location');
   } else {
-    fetch(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${req.params.destination}&inputtype=textquery&fields=formatted_address,name,geometry,photo,place_id&key=AIzaSyCF9bG6U4JFw5LcqXZm-mVh6sdoj7uY1S8`)
+    fetch(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${req.params.destination}&inputtype=textquery&fields=formatted_address,name,geometry,photo,place_id&key=${process.env.API_KEY}`)
       .then(res => res.json())
-      .then(location => fetch(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location.candidates[0].geometry.location.lat},${location.candidates[0].geometry.location.lng}&radius=100000&type=establishment&keyword=attraction&key=AIzaSyCF9bG6U4JFw5LcqXZm-mVh6sdoj7uY1S8&rankby=prominence`))
+      .then(location => fetch(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location.candidates[0].geometry.location.lat},${location.candidates[0].geometry.location.lng}&radius=100000&type=establishment&keyword=attraction&key=${process.env.API_KEY}&rankby=prominence`))
       .then(res => res.json())
       .then(around => res.send(around))
       .catch(err => next(err));
@@ -42,7 +40,7 @@ app.get('/api/attraction/:id', (req, res, next) => {
   if (!req.params.id) {
     throw new ClientError(400, 'this location is not avalible');
   } else {
-    fetch(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${req.params.id}&fields=formatted_address,name,photo,review,rating,opening_hours,website&key=AIzaSyCF9bG6U4JFw5LcqXZm-mVh6sdoj7uY1S8`)
+    fetch(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${req.params.id}&fields=formatted_address,name,photo,review,rating,opening_hours,website&key=${process.env.API_KEY}`)
       .then(res => res.json())
       .then(detail => res.send(detail))
       .catch(err => next(err));
@@ -103,6 +101,20 @@ app.post('/api/auth/log-in', (req, res, next) => {
         });
     })
     .catch(err => next(err));
+});
+
+app.get('/api/image/:id', async (req, res, next) => {
+  if (!req.params.id) {
+    throw new ClientError(400, 'this location is not avalible');
+  } else {
+    const imageUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photo_reference=${req.params.id}&key=${process.env.API_KEY}`;
+    try {
+      const response = await axios.get(imageUrl, { responseType: 'stream' });
+      response.data.pipe(res);
+    } catch (error) {
+      next(error);
+    }
+  }
 });
 
 /* ⛔ Every route after this middleware requires a token! ⛔ */
@@ -282,31 +294,3 @@ app.use(errorMiddleware);
 app.listen(process.env.PORT, () => {
   process.stdout.write(`\n\napp listening on port ${process.env.PORT}\n\n`);
 });
-
-// app.get('/api/photos/:photo', (req, res) => {
-//   if (req.params.photo === 'undefined') {
-//     const erroeMessage = { error: 'Please put a valid location' };
-//     res.status(400).json(erroeMessage);
-//   } else {
-//     // console.log(req.params.photo);
-//     fetch(`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${req.params.photo}&key=AIzaSyCF9bG6U4JFw5LcqXZm-mVh6sdoj7uY1S8`)
-//       .then(response => response.blob())
-//       .then(imageBlob => {
-//         // Then create a local URL for that image and print it
-//         const imageObjectURL = URL.createObjectURL(imageBlob);
-//         res.send(imageObjectURL);
-//         console.log(imageObjectURL);
-//       })
-//       // .then(photo => console.log('the photo is' + photo))
-//       .catch(err => console.error(err));
-//   }
-// });
-
-// fetch(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${req.params.destination}&inputtype=textquery&fields=formatted_address,name,geometry,photo,place_id&key=AIzaSyCF9bG6U4JFw5LcqXZm-mVh6sdoj7uY1S8`)
-//   .then(res => res.json())
-//   .then(location =>
-//     fetch(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location.candidates[0].geometry.location.lat},${location.candidates[0].geometry.location.lng}&radius=100000&type=establishment&keyword=attraction&key=AIzaSyCF9bG6U4JFw5LcqXZm-mVh6sdoj7uY1S8&rankby=prominence`)
-//       .then(res => res.json())
-//       .then(around => res.send(around))
-//       .catch(err => next(err)))
-//   .catch(err => next(err));

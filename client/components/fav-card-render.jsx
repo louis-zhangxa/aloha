@@ -33,7 +33,7 @@ export default class FavCardRender extends React.Component {
       return (
         <li itemID={this.props.location.placeId} className='column-third attraction-card' onClick={this.handleClick}>
           <div className='attraction-info-box'>
-            <img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photo_reference=${this.state.photo1}&key=AIzaSyCF9bG6U4JFw5LcqXZm-mVh6sdoj7uY1S8`} alt="" />
+            <img src={`/api/image/${this.state.photo1}`} alt="" />
             <h3>{this.state.locationName}</h3>
             <h4>{this.state.address}</h4>
             <h5>rating: {this.state.rating}</h5>

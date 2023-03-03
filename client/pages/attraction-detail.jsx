@@ -73,9 +73,9 @@ export default class AttractionDetailPage extends React.Component {
     if (attraction.photo3 !== '') {
       return (
         <div className='row attraction-photo'>
-          <img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photo_reference=${this.state.photo1}&key=AIzaSyCF9bG6U4JFw5LcqXZm-mVh6sdoj7uY1S8`} alt="" />
-          <img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photo_reference=${this.state.photo2}&key=AIzaSyCF9bG6U4JFw5LcqXZm-mVh6sdoj7uY1S8`} alt="" />
-          <img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photo_reference=${this.state.photo3}&key=AIzaSyCF9bG6U4JFw5LcqXZm-mVh6sdoj7uY1S8`} alt="" />
+          <img src={`/api/image/${this.state.photo1}`} alt="" />
+          <img src={`/api/image/${this.state.photo2}`} alt="" />
+          <img src={`/api/image/${this.state.photo3}`} alt="" />
         </div>
       );
     }

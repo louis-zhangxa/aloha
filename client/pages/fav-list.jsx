@@ -30,10 +30,6 @@ export default class FavListPage extends React.Component {
       );
     } else {
       return (
-        // <div className='no-fav'>
-        //   <h1>Oops, nothing here~</h1>
-        //   <a href="#">Back to Home</a>
-        // </div>
         <NotFoundPage />
       );
     }
