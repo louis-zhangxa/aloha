@@ -86,13 +86,3 @@ export default class Login extends React.Component {
     );
   }
 }
-
-// console.log('as' + result);
-//         // fetch('/api/hello', {
-//         //   method: 'GET',
-//         //   headers: {
-//         //     'x-access-token': result.token
-//         //   }
-//         // })
-//         //   .then(res => res.json())
-//         //   .then(mes => console.log(mes));

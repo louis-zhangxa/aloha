@@ -13,17 +13,6 @@ export default class Card extends React.Component {
     event.preventDefault();
   }
 
-  // componentDidMount() {
-  //   if (this.photo === undefined) {
-  //     return;
-  //   }
-  //   fetch(`/api/photos/${this.photo}`)
-  //     .then(res => this.setState({ picture: res.url }))
-  //   // this.setState({ picture: res.url }console.log(res.url)
-  //   // .then(image => this.setState({ picture: image }))
-  //     .catch(err => console.error(err));
-  // }
-
   render() {
     const { name, vicinity, rating } = this.props.location;
     const userRatingTotal = this.props.location.user_ratings_total;
@@ -38,7 +27,7 @@ export default class Card extends React.Component {
     return (
       <li itemID={placeId} className='column-third attraction-card' onClick={this.handleClick}>
         <div className='attraction-info-box'>
-          <img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photo_reference=${this.photo}&key=AIzaSyCF9bG6U4JFw5LcqXZm-mVh6sdoj7uY1S8`} alt="" />
+          <img src={`/api/image/${this.photo}`} alt="" />
           <h3>{name}</h3>
           <h4>{vicinity}</h4>
           <h5>Rated: {rating} by {userRatingTotal} people</h5>
