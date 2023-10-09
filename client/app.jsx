@@ -83,7 +83,6 @@ export default class App extends React.Component {
           {this.renderPage()}
         </>
       </AppContext.Provider>
-
     );
   }
 }
